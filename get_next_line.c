@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/21 21:01:26 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/22 10:47:51 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,23 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
-	int			buf_size;
-
-	buf_size = BUFFER_SIZE;
-	read(fd, &line, BUFFER_SIZE)
+	void	*buff;
+	// int		i;
 	
-	return (NULL);
+	buff = malloc(BUFFER_SIZE);
+	read(fd, buff, BUFFER_SIZE);
+	// i = 0;
+	// while (buff != '\n')
+	// 	i++;
+	return ((char *)buff);
+}
+
+int	main(void)
+{
+	int		fd;
+
+	fd = open("./test.txt", O_RDONLY);
+	printf("get next line = %s\n", get_next_line(fd));
+	close(fd);
+	return (0);
 }

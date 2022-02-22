@@ -3,3 +3,12 @@
 
 #Ignore subdirectories
 */
+
+#Ignore excecutable files
+*.out
+
+#Ignore precompiled header
+*.gch
+
+#Ignore test files
+*.txt
