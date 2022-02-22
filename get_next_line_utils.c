@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:44 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/22 10:29:59 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/22 12:08:18 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,22 @@ size_t	ft_strlen(const char *str)
 		count++;
 	}
 	return (count);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*ptr;
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1) + 1;
+	ptr = (char *) malloc(len);
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:48 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/22 10:30:08 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/22 12:04:20 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 9999
+#  define BUFFER_SIZE 100
 # endif
 
 # include <stdio.h>
@@ -23,8 +23,7 @@
 # include <stdlib.h>
 
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-size_t	ft_strlen(const char *str);
+char	*ft_strdup(const char *s1);
 
 #endif
