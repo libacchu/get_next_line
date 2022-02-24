@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/22 12:18:27 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:00:41 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 char	*get_next_line(int fd)
 {
-	void			*buff;
-	static int		j;
-	size_t			i;
-	char			*ptr;
+	static char		*ptr;
+	char			buff[BUFFER_SIZE];
+	size_t			read_size;
 
-	buff = malloc(BUFFER_SIZE * sizeof(char));
-	read(fd, buff, BUFFER_SIZE);
-	i = 0;
-	j = 0;
-	ptr = (char *)buff;
-	while (ptr[i] != '\n')
+	read_size = read(fd, buff, BUFFER_SIZE);
+	ptr = ft_calloc(BUFFER_SIZE, sizeof(char));
+	ptr = ft_strdup(buff);
+	while (read_size <= BUFFER_SIZE && read_size > 0)
 	{
-		i++;
+		printf("ptr = *%s*\n", ptr);
+		if (ft_strchr(ptr, '\n'))
+			break;
+		printf("----HERE----\n");
+		read_size = read(fd, buff, BUFFER_SIZE);
+		ptr = ft_strjoin(ptr, buff);
 	}
-	ptr[i] = '\0';
-	printf("%s\n", ptr);
 	return (ptr);
 }
 
@@ -38,7 +38,7 @@ int	main(void)
 	int		fd;
 
 	fd = open("./test.txt", O_RDONLY);
-	printf("get next line = %s\n", get_next_line(fd));
+	printf("get next line = %s\n\n\n", get_next_line(fd));
 	// printf("get next line = %s\n", get_next_line(fd));
 	close(fd);
 	return (0);

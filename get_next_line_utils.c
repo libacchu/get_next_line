@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:44 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/22 12:08:18 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/24 10:18:38 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,62 @@ char	*ft_strdup(const char *s1)
 		i++;
 	}
 	ptr[i] = '\0';
+	return (ptr);
+}
+
+int	ft_linecount(const char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str != '\n')
+	{
+		str++;
+		count++;
+	}
+	return (count);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	len;
+	char	*ptr;
+	size_t	i;
+
+	len = ft_strlen(s1) + ft_strlen(s2) + 1;
+	ptr = (char *) malloc(len);
+	if (ptr == 0)
+		return (NULL);
+	i = 0;
+	while (*s1)
+	{
+		ptr[i] = *s1;
+		i++;
+		s1++;
+	}
+	while (*s2)
+	{
+		ptr[i] = *s2;
+		i++;
+		s2++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	size_t	i;
+
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (0);
+	i = 0;
+	while (i < (count * size))
+	{
+		((char *)ptr)[i] = '\0';
+		i++;
+	}
 	return (ptr);
 }
