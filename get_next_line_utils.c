@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:44 by libacchu          #+#    #+#             */
-/*   Updated: 2022/02/24 10:18:38 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/02/24 22:31:03 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*ptr;
 	size_t	count;	
 
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr == NULL)
-	{
+	if (!len || (size_t)start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (s == NULL)
 		return (NULL);
-	}
+	if ((ft_strlen(s + start)) < len)
+		len = ft_strlen(s + start);
+	ptr = (char *)malloc((len + 1) * sizeof(char));
+	if (!ptr)
+		return (NULL);
 	count = 0;
-	while (*s || count == len - 1)
+	while (count < len)
 	{
-		ptr[count] = s[(size_t)start];
-		start++;
+		ptr[count] = s[(size_t)start + count];
 		count++;
 	}
 	ptr[count] = '\0';
