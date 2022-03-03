@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:44 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/03 10:07:54 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/04 00:05:17 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 char	*ft_strchr(const char *s, int c)
 {
 	char	*final;
-
 	final = (char *)s;
 	while (*final)
 	{
+		printf("----------HERE-----------\n");
 		if (*final == c)
 			return (final);
 		final++;
@@ -132,7 +132,7 @@ void	*ft_calloc(size_t count, size_t size)
 	i = 0;
 	while (i < (count * size))
 	{
-		((char *)ptr)[i] = '\0';
+		((char *)ptr)[i] = 0;
 		i++;
 	}
 	return (ptr);

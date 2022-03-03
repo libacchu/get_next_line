@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/03 11:06:22 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/04 00:09:40 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,14 @@ char	*ft_get_line(char *stat)
 	int		x;
 	int		y;
 
+	// printf("*%s*\n", stat);
+	if (stat == 0)
+		return (NULL);
 	x = ft_strlen(stat);
-	y = ft_strlen(ft_strchr(stat, '\n'));
+	if (ft_strchr(stat, '\n'))
+		y = ft_strlen(ft_strchr(stat, '\n'));
+	else
+		y = ft_strlen(ft_strchr(stat, '\0'));
 	line = ft_substr(stat, 0, (x - y));
 	return (line);
 }
@@ -41,9 +47,17 @@ char	*ft_read(int fd, char *stat)
 {
 	char	*buff;
 	int		read_size;
+	char	*holder;
 
 	if (stat == NULL)
+	{
 		stat = ft_calloc(1, 1);
+		printf("HERKJHKH = *%s*\n", stat);
+	}
+	if (stat == (void *)0)
+		printf("----------HERE-----------\n");
+	printf("----------PASSED-----------\n");
+		
 	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	read_size = 1;
 	while (read_size > 0)
@@ -53,8 +67,10 @@ char	*ft_read(int fd, char *stat)
 		if (ft_strchr(stat, '\n'))
 			break ;
 	}
+	holder = stat;
 	free(buff);
-	return (stat);
+	free(stat);
+	return (holder);
 }
 
 char	*get_next_line(int fd)
@@ -63,8 +79,12 @@ char	*get_next_line(int fd)
 	char			*line;
 	char			*str;
 
-	// printf("stat = *%s*\n", stat);
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
 	stat = ft_read(fd, stat);
+	if (!stat)
+		return (NULL);
+	// printf("stat = *%s*\n", stat);
 	line = ft_calloc(1, 1);
 	line = ft_get_line(stat);
 	// free(stat);
@@ -122,21 +142,21 @@ char	*get_next_line(int fd)
 // 	return (join);
 // }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	// char	*s1 = "This is a string";
-// 	// char	*s2;
-// 	// s2 = ft_substr(s1, 1, 4);
-// 	// printf("s2 = *%s*\n", s2);
-// 	fd = open("./test.txt", O_RDONLY);
-// 	// while (get_next_line(fd))
-// 	// 	printf("get next line = *%s*\n\n", get_next_line(fd));
-// 	printf("get next line = *%s*\n", get_next_line(fd));
-// 	printf("get next line = *%s*\n\n", get_next_line(fd));
-// 	printf("get next line = *%s*\n\n", get_next_line(fd));
-// 	printf("get next line = *%s*\n\n", get_next_line(fd));
-// 	printf("get next line = *%s*\n\n", get_next_line(fd));
-// 	close(fd);
-// 	return (0);
-// }
+int	main(void)
+{
+	int		fd;
+	// char	*s1 = "This is a string";
+	// char	*s2;
+	// s2 = ft_substr(s1, 1, 4);
+	// printf("s2 = *%s*\n", s2);
+	fd = open("./test.txt", O_RDONLY);
+	// while (get_next_line(fd))
+	// 	printf("get next line = *%s*\n\n", get_next_line(fd));
+	printf("get next line = *%s*\n", get_next_line(fd));
+	// printf("get next line = *%s*\n\n", get_next_line(fd));
+	// printf("get next line = *%s*\n\n", get_next_line(fd));
+	// printf("get next line = *%s*\n\n", get_next_line(fd));
+	// printf("get next line = *%s*\n\n", get_next_line(fd));
+	close(fd);
+	return (0);
+}
