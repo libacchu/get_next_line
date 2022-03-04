@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:48 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/03 11:02:39 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:12:53 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 999
+#  define BUFFER_SIZE 4
 # endif
 
 # include <stdio.h>

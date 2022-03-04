@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:34:44 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/04 00:05:17 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/04 10:10:15 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ char	*ft_strchr(const char *s, int c)
 	final = (char *)s;
 	while (*final)
 	{
-		printf("----------HERE-----------\n");
+		// printf("----------HERE-----------\n");
 		if (*final == c)
 			return (final);
 		final++;
 	}
+	// printf("final = *%s*\n", final);
 	return (NULL);
 }
 
@@ -99,6 +100,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 	char	*ptr;
 	size_t	i;
+
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	ptr = (char *) malloc(len);
 	if (ptr == 0)
@@ -119,7 +121,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ptr[i] = '\0';
 	return (ptr);
 }
-
 
 void	*ft_calloc(size_t count, size_t size)
 {
