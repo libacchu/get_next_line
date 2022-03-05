@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/04 19:09:46 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/05 11:16:06 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*ft_read(int fd, char *stat)
 	char	*buff;
 	int		read_size;
 	// char	*free_me;
-	
 	// char	*holder;
 
 	if (stat == NULL)
@@ -104,70 +103,3 @@ char	*get_next_line(int fd)
 	// printf("\nstat = *%s*\n", stat);
 	return (line);
 }
-
-// char	*get_next_line(int fd)
-// {
-// 	static char		*ptr;
-// 	char			buff[BUFFER_SIZE];
-// 	char			*final;
-// 	size_t			read_size;
-// 	size_t			x;
-// 	size_t			y;
-
-// 	read_size = read(fd, buff, 1);
-// 	ptr = ft_calloc(1, sizeof(char));
-// 	ptr = ft_strdup(buff);
-// 	while (read_size > 0)
-// 	{
-// 		if (ft_strchr(ptr, '\n'))
-// 			break;
-// 		read_size = read(fd, buff, 1);
-// 		ptr = ft_strjoin(ptr, buff);
-// 	}
-// 	x = ft_strlen(ptr);
-// 	y = ft_strlen(ft_strchr(ptr, '\n'));
-// 	final = ft_substr(ptr, 0, (x - y));
-// 	ptr = ft_strchr(ptr, '\n');
-// 	return (final);
-// }
-
-// char	*get_next_line(int fd)
-// {
-// 	char			*ptr;
-// 	static char		buff;
-// 	int				amtread;
-// 	char			*join;
-
-// 	ptr = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-// 	amtread = 1;
-// 	while (amtread > 0)
-// 	{
-// 		amtread = read(fd, ptr, BUFFER_SIZE);
-// 		ptr[amtread] = '\0';
-// 		join = ft_strjoin(&buff, ptr);
-// 		if (ft_strchr(join, '\n'))
-// 			break;
-// 	}
-// 	free(ptr);
-// 	return (join);
-// }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	int		i;
-// 	int		lines;
-
-// 	fd = open("./test.txt", O_RDONLY);
-// 	lines = 0;
-// 	printf("Enter number of lines: ");
-// 	scanf("%d", &lines);
-// 	i = 1;
-// 	while (i <= lines)
-// 	{
-// 		printf("\nget next line %d = *%s*\n", i, get_next_line(fd));
-// 		i++;
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
