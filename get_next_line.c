@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/05 11:16:06 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/05 16:09:42 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,11 @@ char	*ft_get_line(char *stat)
 
 	// printf("stat = *%s*\n", stat);
 	if (stat == 0)
-	{	
 		return (NULL);
-	}
 	if (ft_strchr(stat, '\n'))
 		len = ft_strlen(stat) - ft_strlen(ft_strchr(stat, '\n')) + 1;
 	else
-		len = ft_strlen(stat) + 1;
+		len = ft_strlen(stat);
 	line = ft_substr(stat, 0, len);
 	return (line);
 }
@@ -60,22 +58,24 @@ char	*ft_read(int fd, char *stat)
 
 	if (stat == NULL)
 		stat = ft_calloc(1, 1);
-	buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	buff[BUFFER_SIZE] = '\0';
 	read_size = 1;
 	while (read_size > 0)
 	{
+		buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+		buff[BUFFER_SIZE] = '\0';
 		read_size = read(fd, buff, BUFFER_SIZE);
 		stat = ft_strjoin(stat, buff);
 		if (ft_strchr(stat, '\n'))
 			break ;
+		free(buff);
+		// printf("read_size = %d\n", read_size);
+		// printf("stat = %s\n", stat);
 	}
 	// holder = stat;
 	// printf("stat = *%s*\n", stat);
 	// if (!read_size || !stat)
 	// free_me = stat;
 	// printf("free_me = *%s*\n", free_me);
-	free(buff);
 	// free(stat);
 	// free(stat);
 	return (stat);
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stat = ft_read(fd, stat);
-	// printf("stat = *%s*\n", stat);
+	// printf("stat 			= *%s*\n", stat);
 	if (!stat[0])
 	{
 		free(stat);
@@ -99,7 +99,14 @@ char	*get_next_line(int fd)
 	// str = stat;
 	// free(stat);
 	line = ft_get_line(stat);
-	stat = ft_other_str(stat);
+	// printf("line 			= *%s*\n", line);
+	if (ft_strchr(stat, '\0'))
+	{
+		free(stat);
+		// printf("-----HERE-----\n");
+	}
+	else
+		stat = ft_other_str(stat);
 	// printf("\nstat = *%s*\n", stat);
 	return (line);
 }

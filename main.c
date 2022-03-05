@@ -6,12 +6,14 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 11:12:10 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/05 11:14:40 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/05 16:17:56 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <string.h>
 
+// lines = 1;
 int	main(void)
 {
 	int	fd;
@@ -25,7 +27,7 @@ int	main(void)
 	i = 1;
 	while (i <= lines)
 	{
-		printf("\nget next line %d = *%s*\n", i, get_next_line(fd));
+		printf("\nget next line %d 	= *%s*\n", i, get_next_line(fd));
 		i++;
 	}
 	close(fd);
