@@ -38,7 +38,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if ((ft_strlen(s + start)) < len)
 		len = ft_strlen(s + start);
-	ptr = (char *)malloc((len + 1) * sizeof(char));
+	ptr = (char *)malloc((len + 1) * sizeof(ptr));
 	if (!ptr)
 		return (NULL);
 	count = 0;
@@ -102,7 +102,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	ptr = (char *) malloc(len);
+	ptr = malloc(len * sizeof(ptr));
 	if (ptr == 0)
 		return (NULL);
 	i = 0;
