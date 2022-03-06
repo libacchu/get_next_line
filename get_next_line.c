@@ -35,18 +35,21 @@ char	*ft_other_str(char *stat)
 
 char	*ft_get_line(char *stat)
 {
-	char	*line;
+	// char	*line;
+	// char	*temp;
 	size_t	len;
 
-	// printf("stat = *%s*\n", stat);
 	if (stat == 0)
 		return (NULL);
+	// temp = ft_strdup(stat);
+	// free(stat)
 	if (ft_strchr(stat, '\n'))
 		len = ft_strlen(stat) - ft_strlen(ft_strchr(stat, '\n')) + 1;
 	else
 		len = ft_strlen(stat);
-	line = ft_substr(stat, 0, len);
-	return (line);
+	// line = ft_substr(stat, 0, len);
+
+	return (ft_substr(stat, 0, len));
 }
 
 char	*ft_read(int fd, char *stat)
@@ -55,8 +58,6 @@ char	*ft_read(int fd, char *stat)
 	int		read_size;
 	char	*temp;
 
-	if (stat == NULL)
-		stat = ft_calloc(1, 1);
 	read_size = 1;
 	while (read_size > 0)
 	{
@@ -78,28 +79,28 @@ char	*get_next_line(int fd)
 {
 	static char		*stat;
 	char			*line;
-	// char			*str;
+	char			*temp;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
+	if (stat == NULL)
+		stat = ft_calloc(1, 1);
 	stat = ft_read(fd, stat);
-	// printf("stat 			= *%s*\n", stat);
+	temp = ft_strdup(stat);
 	if (!stat[0])
 	{
 		free(stat);
 		return (NULL);
 	}	
-	// str = stat;
-	// free(stat);
-	line = ft_get_line(stat);
-	// printf("line 			= *%s*\n", line);
-	if (ft_strchr(stat, '\0'))
-	{
-		free(stat);
-		// printf("-----HERE-----\n");
-	}
-	else
-		stat = ft_other_str(stat);
-	// printf("\nstat = *%s*\n", stat);
+	free(stat);
+	line = ft_get_line(temp);
+	// if (ft_strchr(stat, '\0'))
+	// {
+	// 	free(stat);
+	// 	// printf("-----HERE-----\n");
+	// }
+	// else
+	stat = ft_other_str(temp);
+	free(temp);
 	return (line);
 }
