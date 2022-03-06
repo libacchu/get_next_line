@@ -18,6 +18,7 @@ int	main(void)
 	int	fd;
 	int	i;
 	int	lines;
+	char*str;
 
 	fd = open("./test.txt", O_RDONLY);
 	lines = 0;
@@ -26,7 +27,9 @@ int	main(void)
 	i = 1;
 	while (i <= lines)
 	{
-		printf("\nget next line %d 	= *%s*\n", i, get_next_line(fd));
+		str = get_next_line(fd);
+		printf("\nget next line %d 	= *%s*\n", i, str);
+		free(str);
 		i++;
 	}
 	close(fd);

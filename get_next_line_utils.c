@@ -18,12 +18,10 @@ char	*ft_strchr(const char *s, int c)
 	final = (char *)s;
 	while (*final)
 	{
-		// printf("----------HERE-----------\n");
 		if (*final == c)
 			return (final);
 		final++;
 	}
-	// printf("final = *%s*\n", final);
 	return (NULL);
 }
 
@@ -80,19 +78,6 @@ char	*ft_strdup(const char *s1)
 	}
 	ptr[i] = '\0';
 	return (ptr);
-}
-
-int	ft_linecount(const char *str)
-{
-	int	count;
-
-	count = 0;
-	while (*str != '\n')
-	{
-		str++;
-		count++;
-	}
-	return (count);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
