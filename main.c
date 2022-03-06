@@ -27,7 +27,6 @@ int	main(void)
 	while (i <= lines)
 	{
 		printf("\nget next line %d 	= *%s*\n", i, get_next_line(fd));
-		free()
 		i++;
 	}
 	close(fd);

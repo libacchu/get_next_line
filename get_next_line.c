@@ -62,15 +62,15 @@ char	*ft_read(int fd, char *stat)
 	while (read_size > 0)
 	{
 		buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-		buff[BUFFER_SIZE] = '\0';
+		// buff[BUFFER_SIZE] = '\0';
 		read_size = read(fd, buff, BUFFER_SIZE);
 		temp = ft_strjoin(stat, buff);
-		if (ft_strchr(stat, '\n'))
-			break ;
 		free(buff);
 		free(stat);
 		stat = ft_strdup(temp);
 		free(temp);
+		if (ft_strchr(stat, '\n'))
+			break ;
 	}
 	return (stat);
 }
@@ -89,7 +89,7 @@ char	*get_next_line(int fd)
 	temp = ft_strdup(stat);
 	if (!stat[0])
 	{
-		free(stat);
+		free(temp);
 		return (NULL);
 	}	
 	free(stat);
