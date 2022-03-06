@@ -13,7 +13,6 @@
 #include "get_next_line.h"
 #include <string.h>
 
-// lines = 1;
 int	main(void)
 {
 	int	fd;

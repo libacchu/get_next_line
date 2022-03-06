@@ -53,8 +53,7 @@ char	*ft_read(int fd, char *stat)
 {
 	char	*buff;
 	int		read_size;
-	// char	*free_me;
-	// char	*holder;
+	char	*temp;
 
 	if (stat == NULL)
 		stat = ft_calloc(1, 1);
@@ -64,20 +63,14 @@ char	*ft_read(int fd, char *stat)
 		buff = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		buff[BUFFER_SIZE] = '\0';
 		read_size = read(fd, buff, BUFFER_SIZE);
-		stat = ft_strjoin(stat, buff);
+		temp = ft_strjoin(stat, buff);
 		if (ft_strchr(stat, '\n'))
 			break ;
 		free(buff);
-		// printf("read_size = %d\n", read_size);
-		// printf("stat = %s\n", stat);
+		free(stat);
+		stat = ft_strdup(temp);
+		free(temp);
 	}
-	// holder = stat;
-	// printf("stat = *%s*\n", stat);
-	// if (!read_size || !stat)
-	// free_me = stat;
-	// printf("free_me = *%s*\n", free_me);
-	// free(stat);
-	// free(stat);
 	return (stat);
 }
 
