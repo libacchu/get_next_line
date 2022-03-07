@@ -12,6 +12,19 @@
 
 #include "get_next_line.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	char	*final;
+	final = (char *)s;
+	while (*final)
+	{
+		if (*final == c)
+			return (final);
+		final++;
+	}
+	return (NULL);
+}
+
 char	*ft_other_str(char *stat)
 {
 	char	*line;
@@ -56,12 +69,29 @@ char	*ft_read(int fd, char *stat)
 		read_size = read(fd, buff, BUFFER_SIZE);
 		buff[read_size] = '\0';
 		temp = ft_strjoin(stat, buff);
-		free(buff);
-		free(stat);
-		stat = ft_strdup(temp);
-		free(temp);
-		if (ft_strchr(stat, '\n'))
+		
+		if (ft_strchr(buff, '\n'))
+		{
+			free(buff);
+			free(stat);
+			stat = ft_strdup(temp);
+			free(temp);
 			break ;
+		}
+		else
+		{
+			free(buff);
+			free(stat);
+			stat = ft_strdup(temp);
+			free(temp);
+		}
+		// 	break ;
+		// free(buff);
+		// free(stat);
+		// stat = ft_strdup(temp);
+		// free(temp);
+		// if (ft_strchr(stat, '\n'))
+		// 	break ;
 	}
 	return (stat);
 }

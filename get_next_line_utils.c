@@ -12,18 +12,18 @@
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	char	*final;
-	final = (char *)s;
-	while (*final)
-	{
-		if (*final == c)
-			return (final);
-		final++;
-	}
-	return (NULL);
-}
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	char	*final;
+// 	final = (char *)s;
+// 	while (*final)
+// 	{
+// 		if (*final == c)
+// 			return (final);
+// 		final++;
+// 	}
+// 	return (NULL);
+// }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
