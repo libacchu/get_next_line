@@ -6,7 +6,7 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 11:12:10 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/05 16:17:56 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/07 11:35:38 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 int	main(void)
 {
-	int	fd;
-	int	i;
-	int	lines;
-	char*str;
+	int		fd;
+	int		i;
+	int		lines;
+	char	*str;
 
 	fd = open("./test.txt", O_RDONLY);
 	lines = 0;
