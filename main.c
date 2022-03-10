@@ -6,13 +6,15 @@
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 11:12:10 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/07 11:35:38 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/10 23:21:59 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <string.h>
 
+	// printf("Enter number of lines: ");
+	// scanf("%d", &lines);
 int	main(void)
 {
 	int		fd;
@@ -20,10 +22,8 @@ int	main(void)
 	int		lines;
 	char	*str;
 
-	fd = open("./test.txt", O_RDONLY);
-	lines = 0;
-	printf("Enter number of lines: ");
-	scanf("%d", &lines);
+	fd = open("./test", O_RDONLY);
+	lines = 2;
 	i = 1;
 	while (i <= lines)
 	{

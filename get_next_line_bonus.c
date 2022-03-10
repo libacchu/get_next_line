@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: libacchu <libacchu@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:33:05 by libacchu          #+#    #+#             */
-/*   Updated: 2022/03/10 23:21:25 by libacchu         ###   ########.fr       */
+/*   Updated: 2022/03/10 23:20:17 by libacchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -88,15 +88,15 @@ char	*ft_read(int fd, char *stat)
 
 char	*get_next_line(int fd)
 {
-	static char		*stat;
+	static char		*stat[10496];
 	char			*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd > 10496)
 		return (NULL);
-	stat = ft_read(fd, stat);
-	if (!stat)
+	stat[fd] = ft_read(fd, stat[fd]);
+	if (!stat[fd])
 		return (NULL);
-	line = ft_get_line(stat);
-	stat = ft_other_str(stat);
+	line = ft_get_line(stat[fd]);
+	stat[fd] = ft_other_str(stat[fd]);
 	return (line);
 }
